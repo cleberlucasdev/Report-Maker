@@ -33,7 +33,7 @@ Envia tudo para o backend via HTTP POST
         ↓
 Backend baixa cada arquivo de áudio e transcreve (Groq Whisper)
         ↓
-Texto completo da conversa é enviado para LLM (Groq LLaMA)
+Texto completo da conversa é enviado para LLM (Groq OpenAI GPT OSS 120B)
         ↓
 Relatório gerado e retornado ao atendente
 ```
@@ -47,7 +47,7 @@ Relatório gerado e retornado ao atendente
 | Browser | JavaScript puro (Bookmarklet) | Extração do DOM, sem instalação |
 | Backend | Python + FastAPI | Servidor de API e orquestração |
 | Transcrição | Groq Whisper large-v3 | Áudio → texto |
-| Geração de relatório | Groq LLaMA 3.3 70B | Sumarização de texto |
+| Geração de relatório | Groq OpenAI GPT OSS 120B | Sumarização de texto |
 | Hospedagem | Render | Free tier, sempre ativo |
 
 ---
@@ -137,7 +137,7 @@ Sends everything to the backend via HTTP POST
         ↓
 Backend downloads each audio file and transcribes it (Groq Whisper)
         ↓
-Full conversation text is sent to an LLM (Groq LLaMA)
+Full conversation text is sent to an LLM (Groq OpenAI GPT OSS 120B)
         ↓
 Report is generated and returned to the attendant
 ```
@@ -151,7 +151,7 @@ Report is generated and returned to the attendant
 | Browser | Vanilla JavaScript (Bookmarklet) | DOM extraction, no install needed |
 | Backend | Python + FastAPI | API server, orchestration |
 | Transcription | Groq Whisper large-v3 | Voice note → text |
-| Report generation | Groq LLaMA 3.3 70B | Text summarization |
+| Report generation | Groq OpenAI GPT OSS 120B | Text summarization |
 | Hosting | Render | Free tier, always-on |
 
 ---
