@@ -11,15 +11,15 @@ Gerador automático de relatórios de atendimento com IA.
 
 ### O que faz
 
-Atendentes de suporte lidam com dezenas de chamados por dia — mensagens de texto, áudios, interações com bot. Escrever um relatório para cada atendimento manualmente é repetitivo, lento e sujeito a erros.
+Atendentes de suporte lidam com dezenas de chamados por dia: mensagens de texto, áudios, interações com bot. Escrever um relatório para cada atendimento manualmente é repetitivo, lento e sujeito a erros.
 
 **O Report-Maker elimina isso.**
 
 Com um único clique, o atendente aciona um bookmarklet no browser que lê todo o histórico do chat, envia para um backend que transcreve automaticamente os áudios e gera um relatório limpo e conciso — pronto para copiar e colar.
 
-**Antes:** O atendente lê o chat inteiro e escreve o resumo manualmente. Leva 2 a 5 minutos por chamado.
+**Antes:** O atendente lê o chat inteiro e escreve o resumo manualmente. Leva de 2 a 5 minutos por chamado.
 
-**Depois:** Um clique. O relatório aparece em segundos.
+**Depois:** Um clique. O relatório aparece em segundos. O atendente somente revisa e envia ao sistema.
 
 ---
 
@@ -55,7 +55,7 @@ Relatório gerado e retornado ao atendente
 
 ### Decisões técnicas
 
-**Bookmarklet em vez de extensão** — zero instalação para o usuário final. Funciona em qualquer browser baseado em Chromium. Sem processo de revisão, sem fricção de distribuição.
+**Bookmarklet em vez de extensão** — zero instalação para o usuário final. Funciona em qualquer browser baseado em Chromium. Sem processo de revisão, sem problemas de distribuição.
 
 **Scraping do DOM em vez de integração via API** — a plataforma alvo (Chatmix) não expõe API pública com histórico do chat. O bookmarklet roda no contexto da página com acesso total ao DOM, contornando essa limitação.
 
@@ -68,7 +68,7 @@ Relatório gerado e retornado ao atendente
 ### Privacidade e segurança
 
 - CPF e CNPJ são removidos antes de sair do browser
-- Nenhum dado do chat é armazenado — o backend processa e descarta
+- Nenhum dado do cliente é armazenado: o backend processa e descarta
 - Arquivos de áudio são baixados, transcritos e deletados da memória imediatamente
 
 ---
@@ -76,7 +76,7 @@ Relatório gerado e retornado ao atendente
 ### Variáveis de ambiente
 
 ```
-GROQ_API_KEY=sua_chave_groq
+GROQ_API_KEY = sua_chave_groq
 ```
 
 ---
