@@ -1,5 +1,4 @@
-# 📋 Report-Maker
-
+# 📋 Sintetiza
 > 🇧🇷 [Português](#português) | 🇺🇸 [English](#english)
 
 ---
@@ -13,7 +12,7 @@ Gerador automático de relatórios de atendimento com IA.
 
 Atendentes de suporte lidam com dezenas de chamados por dia: mensagens de texto, áudios, interações com bot. Escrever um relatório para cada atendimento manualmente é repetitivo, lento e sujeito a erros.
 
-**O Report-Maker elimina isso.**
+**O Sintetiza elimina isso.**
 
 Com um único clique, o atendente aciona um bookmarklet no browser que lê todo o histórico do chat, envia para um backend que transcreve automaticamente os áudios e gera um relatório limpo e conciso — pronto para copiar e colar.
 
@@ -117,7 +116,7 @@ Automated AI-powered attendance report generator for customer support teams.
 
 Customer support attendants deal with dozens of calls per day — text messages, voice notes, bot interactions. Writing a report for each one manually is repetitive, slow, and error-prone.
 
-**Report-Maker eliminates that.**
+**Sintetiza eliminates that.**
 
 With a single click, the attendant triggers a browser bookmarklet that reads the entire chat history, sends it to a backend, which automatically transcribes any voice notes and generates a clean, concise report — ready to copy and paste.
 
