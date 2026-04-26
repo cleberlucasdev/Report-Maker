@@ -5,7 +5,6 @@ import tempfile
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import google.generativeai as genai
 
 app = FastAPI()
 
@@ -18,9 +17,6 @@ app.add_middleware(
 
 GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
-
-genai.configure(api_key=GEMINI_API_KEY)
-gemini = genai.GenerativeModel("gemini-1.5-flash")
 
 AUDIO_PATTERN = re.compile(r'\[AUDIO: (https?://\S+?)\](?:\n\(No transcription found\))?')
 
@@ -78,7 +74,6 @@ async def transcribe_audio(url: str) -> str:
 
 async def process_chat_log(chat_log: str) -> str:
     audio_urls = AUDIO_PATTERN.findall(chat_log)
-
     for url in audio_urls:
         transcription = await transcribe_audio(url)
         chat_log = AUDIO_PATTERN.sub(
@@ -86,8 +81,19 @@ async def process_chat_log(chat_log: str) -> str:
             chat_log,
             count=1
         )
-
     return chat_log
+
+
+async def generate_with_gemini(prompt: str) -> str:
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={GEMINI_API_KEY}"
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}]
+    }
+    async with httpx.AsyncClient(timeout=30) as client:
+        response = await client.post(url, json=payload)
+        response.raise_for_status()
+        data = response.json()
+        return data["candidates"][0]["content"]["parts"][0]["text"].strip()
 
 
 @app.post("/generate-report")
@@ -96,11 +102,8 @@ async def generate_report(request: ReportRequest):
         raise HTTPException(status_code=400, detail="chat_log vazio")
 
     processed_log = await process_chat_log(request.chat_log)
-
     prompt = REPORT_PROMPT.format(chat_log=processed_log)
-    response = gemini.generate_content(prompt)
-    report = response.text.strip()
-
+    report = await generate_with_gemini(prompt)
     return {"report": report}
 
 
