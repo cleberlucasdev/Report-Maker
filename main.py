@@ -28,7 +28,7 @@ REGRAS:
 - Não narre o atendimento. Extraia apenas informação útil.
 - Sempre identifique a CAUSA MAIS PROVÁVEL (obrigatório).
 - Se houver causas secundárias, mencione brevemente.
-- Inclua evidências objetivas (ex: teste via cabo, nível de sinal, quedas PPPoE).
+- Inclua OBRIGATORIAMENTE pelo menos 2 evidências objetivas quando disponíveis (ex: teste via cabo, nível de sinal, quedas PPPoE).
 - Não use linguagem vaga ("pode ser") sem priorização.
 - Seja direto, técnico e curto.
 
@@ -36,15 +36,29 @@ ESTRUTURA (dentro do parágrafo):
 
 [Sintoma] + [Evidências] + [Diagnóstico principal] + [Ação tomada]
 
+REGRAS DE COMPRESSÃO:
+
+- Máximo de 4 frases.
+- Máximo de 80 palavras.
+- O relatório deve ser o menor possível sem perder capacidade de decisão técnica.
+- Inclua apenas informações que impactam o diagnóstico ou a ação.
+- Remova detalhes de frequência, quantidade ou contexto que não alterem a causa ou a ação.
+- Descarte completamente:
+  - cumprimentos
+  - repetições
+  - perguntas intermediárias
+  - confirmações sem valor técnico
+- Não explique evidências; apenas declare (ex: “sinal -26 dBm”).
+
 REGRAS TÉCNICAS:
 
-- Se cabo estável → Wi-Fi não é causa principal
-- Se sinal <= -25 dBm → priorizar problema físico
-- Quedas PPPoE → indicar instabilidade de link
+- Se cabo estável → Wi-Fi não é causa principal.
+- Se sinal <= -25 dBm → priorizar problema físico.
+- Quedas PPPoE → indicar instabilidade de link.
 
 EXEMPLO IDEAL:
 
-"Cliente relatou instabilidade com quedas frequentes. Verificado ONU online com quedas PPPoE e sinal em -26 dBm. Teste via cabo estável, descartando rede interna. Diagnóstico indica degradação de sinal óptico como causa principal, com possível influência de roteador próprio. Ajuste remoto realizado e agendada visita técnica para validação do cabo drop e conectores."
+"Cliente relatou instabilidade com quedas frequentes. Verificado ONU online com quedas PPPoE e sinal em -26 dBm. Teste via cabo estável descarta rede interna. Diagnóstico: degradação de sinal óptico como causa principal, com possível influência de roteador próprio. Ação: ajuste remoto e agendamento de visita técnica para validação do cabo drop e conectores."
 
 Histórico:
 {chat_log}
