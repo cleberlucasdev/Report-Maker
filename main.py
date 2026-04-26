@@ -19,7 +19,7 @@ GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 
 AUDIO_PATTERN = re.compile(r'\[AUDIO: (https?://\S+?)\](?:\n\(No transcription found\))?')
 
-REPORT_PROMPT = ""Você é um analista técnico de ISP especializado em diagnóstico de falhas FTTH.
+REPORT_PROMPT = """Você é um analista técnico de ISP especializado em diagnóstico de falhas FTTH.
 
 Analise o histórico e gere um relatório técnico em UM ÚNICO PARÁGRAFO.
 
