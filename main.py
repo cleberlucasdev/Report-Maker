@@ -19,50 +19,32 @@ GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 
 AUDIO_PATTERN = re.compile(r'\[AUDIO: (https?://\S+?)\](?:\n\(No transcription found\))?')
 
-REPORT_PROMPT = """Você é um analista técnico de ISP especializado em registrar ocorrências de atendimento FTTH para continuidade operacional.
+REPORT_PROMPT = """Você é um escriba de atendimentos de suporte técnico. Sua única função é resumir o que foi dito no chat, sem inventar, diagnosticar, propor soluções ou presumir nada além do que está explicitamente registrado.
 
-Tarefa: analisar o histórico do chat e gerar um LOG DE OCORRÊNCIA em UM ÚNICO PARÁGRAFO, conciso e útil para o próximo atendente.
+Regras:
+- Resuma apenas o que foi dito — nada mais
+- Não diagnostique, não proponha ações, não faça perguntas
+- Se o atendimento foi curto ou inconclusivo, o relatório também será curto
+- Ignore mensagens de sistema, menus do bot e transferências
+- Não mencione nomes de atendentes, apenas "o Suporte"
+- Não mencione protocolos, horários, nem dados pessoais (como nome completo)
+- Escreva em um único parágrafo, em português
 
-OBJETIVO:
-Permitir que outro atendente entenda rapidamente o que ocorreu, quais evidências foram coletadas, qual diagnóstico foi assumido e qual ação já foi tomada, evitando retrabalho.
+Exemplos:
 
-REGRAS GERAIS:
-- Não narre o atendimento. Extraia apenas informação útil.
-- Use linguagem técnica, direta e concisa.
-- Não mencione nomes, horários, CPF, cumprimentos ou menus.
-- Priorize o diagnóstico explicitamente indicado pelo suporte.
-- Não invente causas sem evidência no chat.
+Chat: cliente disse "sem internet", sem resposta do suporte.
+Relatório: "Cliente entrou em contato relatando ausência de internet. Atendimento sem resposta registrada."
 
-ESTRUTURA (em fluxo natural, sem rótulos):
-Sintoma + Evidências + Contexto relevante + Diagnóstico + Ação
+Chat: cliente pediu troca de senha do Wi-Fi, suporte realizou a alteração, cliente confirmou.
+Relatório: "Cliente entrou em contato solicitando alteração da senha do Wi-Fi. Alteração realizada conforme solicitado e cliente confirmou funcionamento. Atendimento finalizado com sucesso."
 
-REGRAS DE FILTRAGEM:
-- Inclua pelo menos 2 evidências objetivas quando disponíveis.
-- Se teste via cabo também falhar → não descartar rede interna automaticamente.
-- Se múltiplos clientes afetados → priorizar rede externa.
-- Se sinal <= -25 dBm → considerar degradação física.
-- Se houver quedas PPPoE → indicar instabilidade de link.
-
-REGRAS DE COMPRESSÃO:
-- Máximo de 5 frases.
-- Máximo de 90 palavras.
-- Remova tudo que não impacta diagnóstico ou continuidade.
-- Não explique evidências; apenas declare (ex: “sinal -25 dBm”).
-
-REGRAS DE ESTILO (CRÍTICAS):
-- NUNCA use rótulos como "Evidências:", "Diagnóstico:", "Ação:" ou similares.
-- NUNCA use dois pontos para separar seções.
-- Escreva como texto corrido.
-- Evite linguagem especulativa quando já houver diagnóstico definido.
-
-EXEMPLO IDEAL:
-
-"Cliente relatou lentidão geral em múltiplos dispositivos. ONU online, sem quedas, sinal em -20 dBm e teste via cabo com velocidade normal. Aproximadamente 10 dispositivos conectados ao Wi-Fi. Diagnóstico indica congestionamento na rede Wi-Fi. Orientado reinício do roteador, uso de rede 5 GHz e possível substituição do equipamento caso persista."
+Chat: cliente relatou lentidão, suporte identificou débito em aberto causando redução de velocidade, orientou pagamento, cliente não respondeu mais.
+Relatório: "Cliente entrou em contato relatando lentidão na conexão. Foi identificado débito em aberto, ocasionando redução de velocidade pelo sistema. Cliente orientada a realizar pagamento e enviar comprovante para normalização. Atendimento encerrado por ausência de resposta da cliente."
 
 Histórico:
 {chat_log}
 
-Log de ocorrência:"""
+Relatório:"""
 
 class ReportRequest(BaseModel):
     chat_log: str
