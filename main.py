@@ -40,17 +40,17 @@ Regras:
 - Não mencione nomes de atendentes
 - Não mencione protocolos, horários, nem dados pessoais (como nome completo)
 - Escreva em um único parágrafo, em português
+- Ignore completamente o fluxo do bot: CPF, menus, transferências, instruções automáticas. Foque só no problema real e no que foi resolvido.
 
-Exemplos:
+Exemplos: 
+1) Chat: cliente entrou em contato mas não respondeu após ser atendido.
+Relatório: "Cliente entrou em contato, mas cessou as interações. Atendimento encerrado por ausência de resposta."
 
-Chat: cliente disse "sem internet", sem resposta do suporte.
-Relatório: "Cliente entrou em contato relatando ausência de internet. Atendimento sem resposta registrada."
+2) Chat: cliente relatou lentidão, suporte fez ajustes no roteador, cliente confirmou melhora.
+Relatório: "Cliente relatou lentidão na conexão. Realizados ajustes no roteador e cliente confirmou normalização."
 
-Chat: cliente pediu troca de senha do Wi-Fi, suporte realizou a alteração, cliente confirmou.
-Relatório: "Cliente entrou em contato solicitando alteração da senha do Wi-Fi. Alteração realizada conforme solicitado e cliente confirmou funcionamento. Atendimento finalizado com sucesso."
-
-Chat: cliente relatou lentidão, suporte identificou débito em aberto causando redução de velocidade, orientou pagamento, cliente não respondeu mais.
-Relatório: "Cliente entrou em contato relatando lentidão na conexão. Foi identificado débito em aberto, ocasionando redução de velocidade pelo sistema. Cliente orientada a realizar pagamento e enviar comprovante para normalização. Atendimento encerrado por ausência de resposta da cliente."
+3) Chat: cliente sem acesso, suporte identificou ONU offline, agendou visita técnica.
+Relatório: "Cliente relatou ausência de conexão. Identificado sinal ausente na ONU. Visita técnica agendada."
 
 Histórico:
 {chat_log}
